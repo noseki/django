@@ -1,0 +1,16 @@
+{% extends 'keijiapp/base.html' %}
+
+{% block title %}投稿フォーム{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-body">
+      {% for item in object_list %}
+        <h5 class="card-title">{{ item.title }}</h5>
+        <p class="card-text">{{ item.content }}</p>
+        <a href="{% url 'update' %}" class="card-link">更新</a>
+        <a href="{% url 'delete' %}" class="card-link">削除</a>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}

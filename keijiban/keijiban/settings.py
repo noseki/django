@@ -55,7 +55,7 @@ ROOT_URLCONF = 'keijiban.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR, 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -126,9 +126,9 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 #ログイン設定
-LOGIN_URL = "keijiapp:login"
-LOGIN_REDIRECT_URL = "keijiapp:home"
-LOGOUT_REDIRECT_URL = "keijiapp:login"
+LOGIN_URL = "login"
+LOGIN_REDIRECT_URL = "list"
+LOGOUT_REDIRECT_URL = "login"
 
 #ロギング設定
 LOGGING = {
