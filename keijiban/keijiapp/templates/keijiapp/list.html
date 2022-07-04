@@ -1,16 +1,28 @@
 {% extends 'keijiapp/base.html' %}
 
-{% block title %}投稿フォーム{% endblock %}
+{% load static %}
+
+{% block title %}掲示板一覧{% endblock %}
 
 {% block content %}
-<div class="card">
-    <div class="card-body">
-      {% for item in object_list %}
-        <h5 class="card-title">{{ item.title }}</h5>
-        <p class="card-text">{{ item.content }}</p>
-        <a href="{% url 'update' %}" class="card-link">更新</a>
-        <a href="{% url 'delete' %}" class="card-link">削除</a>
-      {% endfor %}
+<p></P>
+  <img src="{% static 'assets/img/post-it-notes-g5d3618ebd_640.jpg' %}" class="img-fluid">
+  {% for item in object_list %}
+    <div class="card w-75 mt-3 mx-auto">
+
+        <div class="card-body">
+          <div class="post">
+            <h5 class="card-title">{{ item.title }}</h5>
+            <p class="card-text">{{ item.content | truncatechars:30}}</p>
+            <a href="{% url 'detail' item.pk %}" button type="button" class="btn btn-outline-info">続きを読む</button></a>
+            <div class="d-grid gap2 d-md-flex justify-content-md-end">
+              <a href="{% url 'update' item.pk %}" class="card-link">編集</a>
+              <a href="{% url 'delete' item.pk %}" class="card-link">削除</a>
+            </div>
+          </div>
+       </div>
+
     </div>
-  </div>
+  <p></p>
+  {% endfor %}
 {% endblock %}

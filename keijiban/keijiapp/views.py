@@ -1,4 +1,4 @@
-from django.views.generic import ListView, FormView
+from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import ThreadModel
@@ -9,10 +9,25 @@ class ListView(LoginRequiredMixin, ListView):
     template_name = "keijiapp/list.html"
     model = ThreadModel
 
-class FormView(LoginRequiredMixin, FormView):
-    template_name = "keijiapp/form.html"
+class CreateView(CreateView):
+    template_name = "keijiapp/create.html"
     model = ThreadModel
-    fields = ('title','content', 'created_time', 'updated_time')
+    fields = ('title','content')
+    success_url = reverse_lazy('list')
+
+class DetailView(DetailView):
+    template_name = "keijiapp/detail.html"
+    model = ThreadModel
+    
+class UpdateView(UpdateView):
+    template_name = "keijiapp/update.html"
+    model = ThreadModel
+    fields = ('title','content')
+    success_url = reverse_lazy('list')
+
+class DeleteView(DeleteView):
+    template_name = "keijiapp/delete.html"
+    model = ThreadModel
     success_url = reverse_lazy('list')
 
 class LoginView(LoginView):

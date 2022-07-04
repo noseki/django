@@ -1,0 +1,16 @@
+{% extends 'keijiapp/base.html' %}
+
+{% block title %}投稿削除{% endblock %}
+
+{% block content %}
+<div class="w-75 mt-3 mx-auto">
+    <h2>投稿削除</h2>
+    <hr>
+    <form method="post">
+        {% csrf_token %}
+        <p>{{ object.title }}を削除しますか？</p>
+        <p><button tipe='submit' class="btn btn-danger">OK</button></P>
+        <a href="{% url 'list' %}" class="card-link">掲示板一覧に戻る</a>
+    </form>
+</div>
+{% endblock %}

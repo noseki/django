@@ -1,0 +1,12 @@
+{% extends 'keijiapp/base.html' %}
+
+{% block title %}投稿詳細{% endblock %}
+
+{% block content %}
+    <div class="w-75 mt-3 mx-auto">
+        <h2>{{ object.title }}</h2>
+        <!--<p>更新日：{{ object.created_time | date }}</P>-->
+        <hr>
+        <p>{{ object.content }}</P>
+    </div>
+{% endblock %}
