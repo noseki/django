@@ -5,8 +5,10 @@
 {% block title %}掲示板一覧{% endblock %}
 
 {% block content %}
-<p></P>
-  <img src="{% static 'assets/img/post-it-notes-g5d3618ebd_640.jpg' %}" class="img-fluid">
+<p></p>
+  <div style="text-align:center">
+    <img src="{% static 'assets/img/bulletin-board-2768204_960_720.jpg' %}" class="img-fluid">
+  </div>
   {% for item in object_list %}
     <div class="card w-75 mt-3 mx-auto">
 
