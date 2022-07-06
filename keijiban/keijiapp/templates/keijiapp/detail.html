@@ -7,6 +7,8 @@
         <h2>{{ object.title }}</h2>
         <!--<p>更新日：{{ object.created_time | date }}</P>-->
         <hr>
-        <p>{{ object.content }}</P>
+        {% autoescape off %}
+        <p>{{ object.content | linebreaksbr }}</P>
+        {% endautoescape %}
     </div>
 {% endblock %}

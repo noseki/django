@@ -5,16 +5,16 @@
 {% block title %}掲示板一覧{% endblock %}
 
 {% block content %}
-<p></p>
+<br>
   <div style="text-align:center">
-    <img src="{% static 'assets/img/bulletin-board-2768204_960_720.jpg' %}" class="img-fluid">
+    <img src="{% static 'assets/img/bulletin-board-2768204_960_720.jpg' %}" class="img-fluid col-9">
   </div>
   {% for item in object_list %}
     <div class="card w-75 mt-3 mx-auto">
-
-        <div class="card-body">
+      <div class="card-body">
           <div class="post">
             <h5 class="card-title">{{ item.title }}</h5>
+            <hr>
             <p class="card-text">{{ item.content | truncatechars:30}}</p>
             <a href="{% url 'detail' item.pk %}" button type="button" class="btn btn-outline-info">続きを読む</button></a>
             <div class="d-grid gap2 d-md-flex justify-content-md-end">
@@ -23,8 +23,7 @@
             </div>
           </div>
        </div>
-
     </div>
-  <p></p>
+  <br>
   {% endfor %}
 {% endblock %}
