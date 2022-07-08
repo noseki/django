@@ -1,13 +1,17 @@
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.models import User
 from .models import ThreadModel
-from . import forms
+from .forms import SignupForm, LoginForm
 from django.urls import reverse_lazy
 
 class ListView(LoginRequiredMixin, ListView):
     template_name = "keijiapp/list.html"
     model = ThreadModel
+
+    def get_queryset(self):
+        return ThreadModel.objects.order_by('-id')
 
 class CreateView(CreateView):
     template_name = "keijiapp/create.html"
@@ -31,8 +35,14 @@ class DeleteView(DeleteView):
     success_url = reverse_lazy('list')
 
 class LoginView(LoginView):
-    form_class = forms.LoginForm
+    form_class = LoginForm
     template_name = "keijiapp/login.html" 
 
 class LogoutView(LoginRequiredMixin, LogoutView):
     template_name = "keijiapp/login.html"
+
+class SignupView(CreateView):
+    model = User
+    form_class = SignupForm
+    template_name = 'keijiapp/signup.html'
+    success_url = reverse_lazy('list')

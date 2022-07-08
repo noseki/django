@@ -9,4 +9,5 @@ urlpatterns = [
     path('delete/<int:pk>/', views.DeleteView.as_view(), name='delete'),
     path('', views.LoginView.as_view(), name='login'),
     path('logout/', views.LogoutView.as_view(), name= 'logout'),
+    path('signup/', views.SignupView.as_view(), name='signup'),
 ]
