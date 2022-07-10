@@ -5,7 +5,7 @@
 {% block content %}
     <div class="w-75 mt-3 mx-auto">
         <h2>{{ object.title }}</h2>
-        <!--<p>更新日：{{ object.created_time | date }}</P>-->
+        <p>更新日：{{ object.updated_time | date }}</P>
         <hr>
         {% autoescape off %}
         <p>{{ object.content | linebreaksbr }}</P>

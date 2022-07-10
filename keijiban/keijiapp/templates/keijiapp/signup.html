@@ -8,23 +8,50 @@
         <!-- Bootstrap CSS -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-        <title>新規登録</title>
+        <title>新規会員登録</title>
     </head>
 
     <body>
-        <h1 class="text-center">新規会員登録</h1>
-        <hr>
-        <form method="POST" class="p-4 m-4 bg-light border border-success rounded form-group">
-            {% csrf_token %}
-            <input type="text" name="username" class="form-control my-4" placeholder="ユーザーID">
-            <input type="password" name="password1" class="form-control mt-4" placeholder="パスワード">
-            <input type="password" name="password2" class="form-control mt-4" placeholder="パスワード確認用">
-            <small class="mb-2 d-block text-start">パスワードは8文字以上で設定してください。</small>
-            {% if form.errors %}
-            <span class="mb-2 small text-danger d-block text-start">利用できないユーザーIDやパスワードです。再度入力してください。</span>
-            {% endif %}
-            <button type="submit" class="btn btn-outline-primary col-12">アカウント作成</button>
-            <br>
-        </form>
+        <section class="vh-100" style="background-color: #508bfc;">
+            <div class="container py-5 h-100">
+              <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                  <div class="card shadow-2-strong" style="border-radius: 1rem;">
+                    <div class="card-body p-5 text-center">
+          
+                      <h3 class="mb-5">New Account!</h3>
+                      <form method="POST">
+                        {% csrf_token %}
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="typeUsernameX-2">ユーザーID</label>
+                            <input type="text" name="username" id="typeUsernameX-2" class="form-control form-control-lg"/>    
+                        </div>
+            
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="typePasswordX-2">パスワード</label>
+                            <input type="password" name="password1" id="typePasswordX-2" class="form-control form-control-lg"/>    
+                        </div>
+                        
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="typePasswordX-2">パスワード確認用</label>
+                            <input type="password" name="password2" id="typePasswordX-2" class="form-control form-control-lg"/>
+                        </div>
+                        <small class="d-block text-start">パスワードは8文字以上で設定してください。</small>
+                        <br>
+                        {% if form.errors %}
+                        <span class="small text-danger d-block text-start">利用できないユーザーIDやパスワードです。再度入力してください。</span>
+                        {% endif %}
+          
+                        <button class="btn btn-primary btn-lg btn-block col-12" type="submit">アカウント作成</button>
+                        <br>
+                        <br>
+                        <a href="{% url 'login' %}">会員済みの方はこちら</a>
+                     </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
     </body>
 </html>

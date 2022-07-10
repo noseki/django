@@ -16,7 +16,7 @@ class ThreadListView(LoginRequiredMixin, ListView):
 class ThreadCreateView(CreateView):
     template_name = "keijiapp/create.html"
     model = ThreadModel
-    fields = ('title','content')
+    fields = ('title','content', 'created_time', 'updated_time',)
     success_url = reverse_lazy('list')
 
 class ThreadDetailView(DetailView):
@@ -26,7 +26,7 @@ class ThreadDetailView(DetailView):
 class ThreadUpdateView(UpdateView):
     template_name = "keijiapp/update.html"
     model = ThreadModel
-    fields = ('title','content')
+    fields = ('title','content', 'created_time', 'updated_time',)
     success_url = reverse_lazy('list')
 
 class ThreadDeleteView(DeleteView):

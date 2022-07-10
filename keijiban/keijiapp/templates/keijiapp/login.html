@@ -11,32 +11,39 @@
     <title>ログイン</title>
   </head>
 
-  <body style="background-color: #C0C0C0;">
-    <div class="container">
-      <div class="d-flex align-items-center justify-content-center" style="height:800px;">
-        <div class="col-md-4">
-          <form method="POST">
-            <div class="card">
-                <div class="card-body">
-                    <h1 class="text-center">Sign up!</h1>
-                    {% csrf_token %}
-                    {{ form.non_field_errors }}
-                    {% for field in form %}
-                        {{ field.label }}
-                        <br>
-                        {{ field }}
-                        <br>
-                        {{ field.errors }}
-                    {% endfor %}
-                    <br>
-                    <button type="submit" class="btn btn-outline-primary col-12">ログイン</button>
-                    <br>
-                    <a href="{% url 'signup' %}">新規会員登録はこちら</a>
-                </div>
-            </div>
-          </form>
+  <body>
+    <section class="vh-100" style="background-color: #508bfc;">
+      <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+            <div class="card shadow-2-strong" style="border-radius: 1rem;">
+              <div class="card-body p-5 text-center">
+ 
+      
+                <form method="POST">        
+                  <div class="card-body">
+                      <h1 class="text-center">Sign up!</h1>
+                      <br>
+                      {% csrf_token %}
+                      {{ form.non_field_errors }}
+                      {% for field in form %}
+                          {{ field.label }}
+                          <br>
+                          {{ field }}
+                          <br>
+                          {{ field.errors }}
+                      {% endfor %}
+                      <br>
+                      <button type="submit" class="btn btn-outline-primary col-12">ログイン</button>
+                      <br>
+                      <br>
+                      <a href="{% url 'signup' %}">新規会員登録はこちら</a>
+                  </div>
+                </form>
+              </div>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
   </body>
 </html>
