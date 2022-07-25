@@ -10,13 +10,13 @@ class LoginForm(AuthenticationForm):
             field.widget.attrs["class"] = "form-control"
             field.widget.attrs['placeholder'] = f"{field.label}を入力してください。" 
 
+'''
 class SignupForm(forms.ModelForm):
     class Meta():
         model = Account
         fields = ('username','account_image',)
         labels = {'username':"名前",'account_image':"写真アップロード",}
 
-'''
 class SignupForm(UserCreationForm):
     avatar = forms.ImageField(upload_to='avatar_icon', blank=True, null=True)
     class Meta:

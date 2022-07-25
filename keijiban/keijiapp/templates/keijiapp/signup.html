@@ -44,12 +44,27 @@
                           <form method="post" enctype="multipart/form-data" class="form-control form-control-lg">
                               {% csrf_token %}
                               {{ form }}
-                              <button type="submit" class="btn btn-info">アップロード</button>
-                          </form>    
-                        </div>
+                              <input type="file" class="form-control form-control-lg" value="アップロード" onchange="previewFile(this);">
+                          </form>
+                          <br>
+                          <p>プレビュー</p>
+                          <img id="preview">
+                        </div> 
+                          <script>
+                          function previewFile(hoge){
+                            var fileData = new FileReader();
+                            fileData.onload = (function() {
+                              //id属性が付与されているimgタグのsrc属性に、fileReaderで取得した値の結果を入力することで
+                              //プレビュー表示している
+                              document.getElementById('preview').src = fileData.result;
+                            });
+                            fileData.readAsDataURL(hoge.files[0]);
+                          }
+                          </script>  
+                        
                         <br>
 
-
+                        
 
                         {% if form.errors %}
                         <span class="small text-danger d-block text-start">利用できないユーザーIDやパスワードです。再度入力してください。</span>
