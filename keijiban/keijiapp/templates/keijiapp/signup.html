@@ -38,6 +38,19 @@
                         </div>
                         <small class="d-block text-start">パスワードは8文字以上で設定してください。</small>
                         <br>
+
+                        <div class="form-outline mb-4">
+                          <label class="form-label" for="profile_pic">アバター写真：</label>
+                          <form method="post" enctype="multipart/form-data" class="form-control form-control-lg">
+                              {% csrf_token %}
+                              {{ form }}
+                              <button type="submit" class="btn btn-info">アップロード</button>
+                          </form>    
+                        </div>
+                        <br>
+
+
+
                         {% if form.errors %}
                         <span class="small text-danger d-block text-start">利用できないユーザーIDやパスワードです。再度入力してください。</span>
                         {% endif %}
