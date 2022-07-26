@@ -3,13 +3,13 @@ from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from .models import ThreadModel
-from .forms import SignupForm, LoginForm
+from .forms import LoginForm
 from django.urls import reverse_lazy
 from django.shortcuts import render
-from .forms import LoginForm, SignupForm # ユーザーアカウントフォーム
-from django.contrib.auth import authenticate
-from django.http import HttpResponseRedirect, HttpResponse
-from django.urls import reverse
+from .forms import LoginForm
+#from django.contrib.auth import authenticate
+#from django.http import HttpResponseRedirect, HttpResponse
+#from django.urls import reverse
 
 class ThreadListView(LoginRequiredMixin, ListView):
     template_name = "keijiapp/list.html"
@@ -54,42 +54,26 @@ class  ThreadSignupView(TemplateView):
         self.params = {
         "AccountCreate":False,
         "login_form": LoginForm(),
-        "signup_form":SignupForm(),
-        }
+                }
 
     
     def get(self,request):
         self.params["login_form"] = LoginForm()
-        self.params["signup_form"] = SignupForm()
         self.params["AccountCreate"] = False
         return render(request,"keijiapp/signup.html",context=self.params)
 
     
     def post(self,request):
         self.params["login_form"] = LoginForm(data=request.POST)
-        self.params["signup_form"] = SignupForm(data=request.POST)
-
         
         # フォーム入力の有効検証
-        if self.params["login_form"].is_valid() and self.params["signup_form"].is_valid():
+        if self.params["login_form"].is_valid():
 
             account = self.params["login_form"].save()
             
             account.set_password(account.password)
             
             account.save()
-
-    
-            add_account = self.params["signup_form"].save(commit=False)
-            add_account.user = account
-
-
-            if 'account_image' in request.FILES:
-                add_account.account_image = request.FILES['account_image']
-
-        
-            add_account.save()
-
             
             self.params["AccountCreate"] = True
 

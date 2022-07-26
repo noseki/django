@@ -43,19 +43,16 @@
                           <label class="form-label" for="profile_pic">アバター写真：</label>
                           <form method="post" enctype="multipart/form-data" class="form-control form-control-lg">
                               {% csrf_token %}
-                              {{ form }}
                               <input type="file" class="form-control form-control-lg" value="アップロード" onchange="previewFile(this);">
                           </form>
                           <br>
+                        </div>
                           <p>プレビュー</p>
                           <img id="preview">
-                        </div> 
                           <script>
                           function previewFile(hoge){
                             var fileData = new FileReader();
                             fileData.onload = (function() {
-                              //id属性が付与されているimgタグのsrc属性に、fileReaderで取得した値の結果を入力することで
-                              //プレビュー表示している
                               document.getElementById('preview').src = fileData.result;
                             });
                             fileData.readAsDataURL(hoge.files[0]);
@@ -69,8 +66,10 @@
                         {% if form.errors %}
                         <span class="small text-danger d-block text-start">利用できないユーザーIDやパスワードです。再度入力してください。</span>
                         {% endif %}
-          
-                        <button class="btn btn-primary btn-lg btn-block col-12" type="submit">アカウント作成</button>
+                        <form method="post">
+                          {% csrf_token %}
+                          <button class="btn btn-primary btn-lg btn-block col-12" type="submit">アカウント作成</button>
+                        </form>
                         <br>
                         <br>
                         <a href="{% url 'login' %}">会員済みの方はこちら</a>
