@@ -1,7 +1,7 @@
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
-from django.contrib.auth.models import User
-from django import forms
-from .models import Account
+from django.contrib.auth.forms import AuthenticationForm
+#from django.contrib.auth.models import User
+#from django import forms
+#from .models import Account
 
 class LoginForm(AuthenticationForm):
     def __init__(self, *args, **kwargs):

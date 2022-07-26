@@ -62,10 +62,11 @@ class  ThreadSignupView(TemplateView):
         self.params["AccountCreate"] = False
         return render(request,"keijiapp/signup.html",context=self.params)
 
-    
+
     def post(self,request):
         self.params["login_form"] = LoginForm(data=request.POST)
-        
+
+
         # フォーム入力の有効検証
         if self.params["login_form"].is_valid():
 
@@ -79,8 +80,8 @@ class  ThreadSignupView(TemplateView):
 
         else:
             
-            print(self.params["login_form"].errors)
-        
+            self.params["error_messages"] = self.params["login_form"].errors
+
         return render(request,"keijiapp/signup.html",context=self.params)
 
 '''

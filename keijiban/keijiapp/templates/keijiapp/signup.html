@@ -36,7 +36,9 @@
                             <label class="form-label" for="typePasswordX-2">パスワード確認用</label>
                             <input type="password" name="password2" id="typePasswordX-2" class="form-control form-control-lg"/>
                         </div>
-                        <small class="d-block text-start">パスワードは8文字以上で設定してください。</small>
+                        {% for error_message in error_messages %}
+                        <small class="d-block text-start">{{ error_message }}</small>
+                        {% endfor %}
                         <br>
 
                         <div class="form-outline mb-4">
